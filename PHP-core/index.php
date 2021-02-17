@@ -4,23 +4,29 @@
     <head> 
            <title>Trang chủ</title>
            <meta name="viewport" content="width=device-width,initial-scale=1">
-           <link rel="stylesheet" href="Css/style.css">
+           <link rel="stylesheet" href="Assets/Css/style.css">
     </head>
     <body>
 
+    <script>
+        // Get the modal
+        var modal_01 = document.getElementById('id01');
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal_01) {
+                modal_01.style.display = "none";
+            }
+            
+        }
+    </script>
+
         <h2>PHP Core </h2>
         <!--Button Dang nhap-->         
-        <button onclick ="document.getElementById('id01').style.display='block' " ,style="width:100;">
+        <button onclick ="document.getElementById('id01').style.display='block'" ,style="width:100;" class="button-style">
             Đăng nhập       
         </button>
         <br>
-        <label>
-               <?php 
-               if(isset($_GET["message"])) {
-                   echo $_GET["message"];
-                }
-               ?>
-        </label>
+        
         
         <!--Button Dang ky--> 
         <!-- <button onclick ="document.getElementById('id02').style.display='block' " ,style="width:100;">
@@ -34,7 +40,7 @@
             <form class="modal-content animate" action="login.php" method="post">
                 <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="img/icon.png" width="200" height="200" >
+                <img src="Assets/img/icon.png" width="200" height="200" >
                 </div>
 
                 <div class="container">
@@ -48,7 +54,7 @@
                         <input type="checkbox" checked="checked" name="remember_chkbox">Nhớ tôi trên thiết bị
                     </label>
                     
-                    <button type="submit">Đăng nhập</button>
+                    <button type="submit" class="button-style">Đăng nhập</button>
                     
                 </div>
 
@@ -58,21 +64,15 @@
                 </div>
             </form>
         </div>
-  
+        <h2 style="color:red;">
+               <?php 
+               if(isset($_GET["message"])) {
+                   echo $_GET["message"];
+                }
+               ?>
+        </h2>
     
         
-        
-        <script>
-        // Get the modal
-        var modal_01 = document.getElementById('id01');
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal_01) {
-                modal_01.style.display = "none";
-            }
-            
-        }
-        </script>
 
     </body>
 

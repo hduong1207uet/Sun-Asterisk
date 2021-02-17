@@ -9,26 +9,19 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-html,body {
-    display: table;
-    margin: auto;
-}
 /* Set a style for all buttons */
-button {
+.button-style {
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
-  margin: 15px 0;
+  margin: 0 auto;
+  display: block;
   border: none;
   cursor: pointer;
   width: 200px;
   align-items: center;
 }
 
-.btn-dang-xuat{
-float: left;
-
-}
 h2 {
     text-align: center;
 }
@@ -36,7 +29,7 @@ h2 {
 h4 {
     size: 22;
 } */
-button:hover {
+.button-style:hover {
   opacity: 0.8;
 }
 
@@ -86,7 +79,7 @@ span.psw {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   padding-top: 60px;
-}
+} 
 
 /* Modal Content/Box */
 .modal-content {
@@ -95,7 +88,7 @@ span.psw {
   border: 1px solid #888;
   width: 68%; /* Could be more or less, depending on screen size */
 }
-
+   
 
 /* The Close Button (x) */
 .close {
@@ -138,4 +131,20 @@ span.psw {
   .cancelbtn {
      width: 100%;
   }
+}
+
+.edit_btn {
+  text-decoration: none;
+  padding: 2px 5px;
+  background: #2E8B57;
+  color: white;
+  border-radius: 3px;
+}
+
+.del_btn {
+  text-decoration: none;
+  padding: 2px 5px;
+  color: white;
+  border-radius: 3px;
+  background: #800000;
 }

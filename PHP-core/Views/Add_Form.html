@@ -1,0 +1,37 @@
+
+<!--Add products form-->
+<div id="add_product" class="modal">
+
+<form class="modal-content animate" action="admin-page.php?action=add" method="post">      
+
+    <span onclick="document.getElementById('add_product').style.display='none'" class="close" >&times;</span>
+                    
+    <div class="container">
+        <h2>THÊM SẢN PHẨM</h2>
+        <br>
+        <label><b>ID sản phẩm</b></label>
+        <input type="text"  name="txt_product_id" required>
+
+        <label><b>Tên sản phẩm</b></label>
+        <input type="text" name="txt_product_name" required>
+        <br>      
+        
+        <label><b>Giá sản phẩm</b></label>
+        <input type="text" name="txt_product_price" required>
+        <br> 
+
+        <label><b>Nhà sản xuất</b></label>
+        <input type="text" name="txt_manufacturer" required>
+        <br> 
+        
+        <button type="submit" class="button-style" name="btn_add" >Thêm mới sản phẩm</button>
+        
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+    <button type="button" onclick="document.getElementById('add_product').style.display='none'" class="cancelbtn">Cancel</button>
+    
+    </div>
+</form>
+</div>
+<!--End add products form -->

@@ -1,7 +1,7 @@
 <?php
     session_start();
     $message="";
-    include ("Controllers/mysql-connect-db.php"); 
+    include ("./mysql-connect-db.php"); 
     $conn = OpenCon();
     $usr_result =  mysqli_query($conn, "SELECT * FROM user WHERE username = '" . $_POST["username"] . "' AND password = '" . $_POST["password"] . "' ");    
 
