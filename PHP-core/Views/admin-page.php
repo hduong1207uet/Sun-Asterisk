@@ -1,6 +1,10 @@
 <?php
 session_start();
-include("../Controllers/Products_Controller.php");
+include_once("../Controllers/Products_Controller.php");
+if(!isset($_SESSION["username"])){
+    header("Location:../index.php");
+    exit;
+}
 ?>
 <!DOCTYPE>
 <html>
@@ -9,13 +13,14 @@ include("../Controllers/Products_Controller.php");
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="../Assets/Css/style-admin.css">
         <link rel="stylesheet" href="../Assets/Css/style.css">
+        <script src="../Assets/JS/myJS.js"></script>
     </head>
 
     <!--Body part-->
     <body>
         <!--Logout Button-->
         <div class="nav-bar">
-           <button class="btn-dang-xuat" onclick="window.location.href='../logout.php';" >  
+           <button class="btn-dang-xuat" onclick="logout_User()" >  
                Đăng xuất
            </button>
         </div>
@@ -23,14 +28,13 @@ include("../Controllers/Products_Controller.php");
         <?php 
             echo "Xin chào, " .$_SESSION["username"];        
         ?>
-        <div class = "main-content">
-          
+
+        <div class = "main-content"> 
           <table class="product-tbl">    
              <caption><h1>Danh sách sản phẩm</h1></caption>
              <tr>
-                 <td style="border:none;text-align:center;vertical-align: middle;">
-                  <button style="height:40px;cursor: pointer;" onclick ="document.getElementById('add_product').style.display='block'" >Thêm sản phẩm </button>
-                  <button style="height:40px;cursor: pointer;" onclick="refreshPage">Refresh </button> 
+                  <td style="border:none;text-align:center;vertical-align: middle;">
+                  <button style="height:40px;cursor: pointer;" onclick ="displayForm('add_product')" >Thêm sản phẩm </button>                 
                   </td>
              </tr>                 
               <tr>
@@ -42,7 +46,6 @@ include("../Controllers/Products_Controller.php");
               </tr>
               <?php
               //fetch all products's row
-                 $Products_Ctrl = new Products_Controller();  
                  $result_all_Product = $Products_Ctrl->get_AllProducts();
                  while($row = mysqli_fetch_array($result_all_Product)) {
               ?>
@@ -52,9 +55,8 @@ include("../Controllers/Products_Controller.php");
                      <td> <?php echo $row["Gia_SP"]. " $"; ?></td>
                      <td> <?php echo $row["Nha_san_xuat"]; ?></td> 
                      <td>
-
-                         <a href="Edit_Form.php?action=view_by_id&id_sp=<?php echo $row["ID_SP"]?>" class="edit_btn">Sửa</a>&nbsp&nbsp
-                         <a href="admin-page.php?action=del&id_sp=<?php echo $row["ID_SP"]?>" class="del_btn">Xóa</a>
+                         <button class="edit_btn" onclick="edit_Products('<?php echo $row['ID_SP'];?>') ">Sửa</button>
+                         <button class="del_btn" onclick="confirm_Del('<?php echo $row['ID_SP'];?>') ">Xóa</button>
                      </td>                       
                  </tr>
               <?php       
@@ -62,26 +64,10 @@ include("../Controllers/Products_Controller.php");
               ?>
           </table>
         <div>
+
         <?php
-            include("./Add_Form.html");
-            if(isset($_GET["action"])){
-                $action = $_GET["action"];
-                if($action == 'add'){
-                    $Products_Ctrl->add_Product();
-                }
-                if($action == 'del'){
-                    $id = $_GET["id_sp"];
-                    $Products_Ctrl->delete_Product($id);
-                }
-                if($action == 'edit'){
-                    $id = $_GET["id_sp"];
-                    $Products_Ctrl->edit_Product($id);
-                }
-            }
-
+            include_once("./Add_Form.html");
         ?>
-
-
 
     </body>
 

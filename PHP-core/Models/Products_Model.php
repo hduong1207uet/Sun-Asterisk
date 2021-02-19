@@ -10,19 +10,18 @@ class Products_Model{
             return $result;   
       }
 
-      //Get single product
-      function get_Product_ByID($id){
+      //Get A product by id
+      function getProductByID($id){
             $conn = OpenCon(); 
-            $result =  mysqli_query($conn, "SELECT * FROM products WHERE ID_SP = '" . $id . "' ");
-            $row = mysqli_fetch_array($result);
-            return $row;   
+            $result =  mysqli_query($conn, "SELECT * FROM products WHERE ID_SP = '{$id}' ");
+            return $result;   
       }
 
       //Add a product
       function add_Product($id,$name,$price,$manufacturer){
             $conn = OpenCon(); 
             try{
-            $query = "INSERT INTO products VALUES ('" . $id . "' ,'" . $name . "', '" . $price . "', '" . $manufacturer . "')";
+            $query = "INSERT INTO products VALUES ('{$id}' ,'{$name}', '{$price}', '{$manufacturer}')";
             $conn->query($query);
             }
             catch(Exception $err){
@@ -35,7 +34,7 @@ class Products_Model{
       function edit_Product($id,$name,$price,$manufacturer){
             $conn = OpenCon(); 
             try{
-            $query = "UPDATE products SET TEN_SP = '" . $name . "', Gia_SP = '" . $price . "', Nha_San_Xuat = '" . $manufacturer . "' WHERE ID_SP = '" . $id . "' ";
+            $query = "UPDATE products SET TEN_SP = '{$name}', Gia_SP = '{$price}', Nha_San_Xuat = '{$manufacturer}' WHERE ID_SP = '{$id}' ";
             $conn->query($query);
             }
             catch(Exception $err){
@@ -48,12 +47,12 @@ class Products_Model{
       function delete_Product($id){
             $conn = OpenCon(); 
             try{
-            $query = "DELETE FROM products WHERE ID_SP = '" . $id . "' ";
+            $query = "DELETE FROM products WHERE ID_SP = '{$id}' ";
             $conn->query($query);
             }
             catch(Exception $err){
                 $conn->close();
-                throw $err;
+                echo $err;
             }
       }
 }

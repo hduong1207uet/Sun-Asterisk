@@ -6,27 +6,20 @@
             <link rel="stylesheet" href="../Assets/Css/style.css">
     </head>
     <body>
-        <script language="javascript">
-               function loadPage($url){
-                window.location.href ="'.$url.'";
-               }   
-        </script>
         <?php 
-            include("../Controllers/Products_Controller.php"); 
-            $Product_Ctrl =  new Products_Controller();
-            $id = $_GET["id_sp"];
-            $row =  $Product_Ctrl->get_Product_ByID($id);
+            include("../Controllers/Products_Controller.php");
+            $id = $_GET["id"];
+            $result = $Products_Ctrl->getProductByID($id); 
+            $row = mysqli_fetch_array($result);
         ?>
     <!--Edit products form-->
-            <form class="modal-content animate" action="admin-page.php?action=edit" method="post">      
-        
-                <span onclick="document.getElementById('edit_product').style.display='none'" class="close" >&times;</span>
+            <form class="modal-content animate" action="../Controllers/Products_Controller.php?action=edit" method="post">      
                                 
                 <div class="container">
                     <h2>SỬA SẢN PHẨM</h2>
                     <br>
                     <label><b>ID sản phẩm</b></label>
-                    <input type="text"  name="txt_id" value="<?php echo $row["ID_SP"]; ?>"required>
+                    <input type="text"  name="txt_id" value="<?php echo $row["ID_SP"]; ?>" readonly>
 
                     <label><b>Tên sản phẩm</b></label>
                     <input type="text" name="txt_name" value="<?php echo $row["Ten_SP"]; ?>" required>
@@ -41,11 +34,10 @@
                     <br> 
                     
                     <button type="submit" class="button-style">Sửa sản phẩm</button>
-                    
                 </div>
 
                 <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick=""  class="cancelbtn">Cancel</button>
+                <button type="button" onclick="window.history.back();"  class="cancelbtn">Cancel</button>
                 
                 </div>
             </form>

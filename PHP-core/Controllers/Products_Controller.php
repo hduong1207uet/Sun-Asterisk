@@ -1,5 +1,8 @@
+<!--File chứa Product Controller và xử lý sự kiện-->
+
 <?php
-  include("../Models/Products_Model.php");
+  include_once("../Models/Products_Model.php");
+  include_once("Base_Controller.php");
 
   class Products_Controller{
         function get_AllProducts(){
@@ -9,9 +12,9 @@
         }
 
         //Get single product
-        function get_Product_ByID($id){
+        function getProductByID($id){
                 $P_Model = new Products_Model();
-                $result= $P_Model->get_Product_ByID($id);
+                $result = $P_Model->getProductByID($id);
                 return $result;
         }
 
@@ -23,8 +26,7 @@
                 $price  = $_POST["txt_product_price"];
                 $manufacturer  = $_POST["txt_manufacturer"];               
                 $P_Model->add_Product($id,$name,$price,$manufacturer);
-                $url = "../Views/admin-page.php";    
-                echo '<script language="javascript">window.location.href ="'.$url.'"</script>';         
+                goBack_AdminPage();        
         }
 
         //Edit a product
@@ -35,18 +37,37 @@
                 $price  = $_POST["txt_price"];
                 $manufacturer  = $_POST["txt_manufacturer"];               
                 $P_Model->edit_Product($id,$name,$price,$manufacturer);
-                $url = "../Views/admin-page.php";    
-                echo '<script language="javascript">window.location.href ="'.$url.'"</script>';  
+                goBack_AdminPage(); 
         }
 
         //Delete a product
         function delete_Product($id){
                 $P_Model = new Products_Model(); 
                 $P_Model->delete_Product($id);
-                $url = "../Views/admin-page.php";    
-                echo '<script language="javascript">window.location.href ="'.$url.'"</script>'; 
+                goBack_AdminPage();
         }
-  }
+
+  }//end Class Controller
+
+  $Products_Ctrl = new Products_Controller();  
+  if(isset($_GET["action"])){
+        $action = $_GET["action"];
+        if($action == 'add'){
+            $Products_Ctrl->add_Product();
+        }
+        if($action == 'del'){
+            $id = $_GET["id"];
+            $Products_Ctrl->delete_Product($id);
+        }
+        if($action == 'edit'){            
+            $Products_Ctrl->edit_Product();
+        }
+        if($action == 'getProductByID'){
+           $id = $_GET["id"];
+           header("Location:../Views/Edit_Form.php?id=${id}");
+        }
+    }
+
 
 
 

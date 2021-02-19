@@ -1,11 +1,6 @@
-<?php 
-function view($path, $data) {
-    foreach($data as $item) {
-        echo $item;
-    }
-}  
-$data = array('item0', 'item1', 'item3');
-view('index', $data);
-return View::display("index.php");
-
+<?php
+   $link = $_SERVER['PHP_SELF'];
+   echo $_SERVER['PHP_SELF'];
 ?>
+<br><br>
+<a href="<?php echo $link ?>/Views"> Click here</a>
