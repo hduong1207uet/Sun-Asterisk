@@ -1,0 +1,8 @@
+-chú thích hàm 
+-giá trị truyền mặc định vào hàm
+-giá trị trả về ở trong interface thay cho function
+-abtract : gộp các đối tượng cùng bản chất
+-interface : gộp các đối tượng cùng phương thức
+-Magic function PHP
+-biến trong transaction được lưu ở đâu
+-trait

@@ -24,3 +24,20 @@ function edit_Products(id){
     var action = 'getProductByID';
     window.location.href="../Controllers/Products_Controller.php?action="+action+"&id="+id;
 }
+
+function checkPriceEditForm(){
+        var price = document.forms["edit_form"]["txt_price"].value;
+         if(isNaN(price)){
+             alert("Giá sản phẩm phải là 1 số !");
+             document.forms["edit_form"]["txt_price"].focus();
+             return false;
+         }
+}
+function checkPriceAddForm(){
+    var price = document.forms["add_form"]["txt_product_price"].value;
+     if(isNaN(price)){
+         alert("Giá sản phẩm phải là 1 số !");
+         document.forms["add_form"]["txt_product_price"].focus();
+         return false;
+     }
+}

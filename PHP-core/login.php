@@ -6,9 +6,15 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 { 
     $message="";
     include ("./mysql-connect-db.php"); 
+    //Kiem tra dau vao Username và pass
+    $userName = test_input($_POST["username"]);
+    $pass     = test_input($_POST["password"]);
 
     $conn = OpenCon();
-    $usr_result =  mysqli_query($conn, "SELECT * FROM user WHERE username = '" . $_POST["username"] . "' AND password = '" . $_POST["password"] . "' ");    
+    $login_query = "SELECT * FROM user WHERE username = '{$userName}' AND password = '{$pass}' ";
+    //check query input
+    $login_query = test_input($login_query);
+    $usr_result =  mysqli_query($conn, $login_query );    
 
     //Duyệt qua kết quả trả về từ CSDL
     $row  = mysqli_fetch_array($usr_result);
@@ -18,8 +24,8 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 
         //kiểm tra kết quả và gán SESSION , COKKIES
         if(!empty($_POST["remember_chkbox"])) {
-            setcookie ("username",$_POST["username"],time()+ 3600);
-            setcookie ("password",$_POST["password"],time()+ 3600);
+            setcookie ("username",$userName ,time()+ 3600);
+            setcookie ("password",$pass     ,time()+ 3600);
             echo "Cookies Set Successfuly";
         } else {
             setcookie("username","");

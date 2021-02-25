@@ -4,16 +4,19 @@
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <link rel="stylesheet" href="../Assets/Css/style-admin.css">
             <link rel="stylesheet" href="../Assets/Css/style.css">
+            <script src="../Assets/JS/myJS.js"></script>
     </head>
     <body>
         <?php 
             include("../Controllers/Products_Controller.php");
-            $id = $_GET["id"];
+            //kiem tra dau vao
+            $id = test_input($_GET["id"]);
             $result = $Products_Ctrl->getProductByID($id); 
+            //duyet kqua tim 1 ban ghi qua ID
             $row = mysqli_fetch_array($result);
         ?>
     <!--Edit products form-->
-            <form class="modal-content animate" action="../Controllers/Products_Controller.php?action=edit" method="post">      
+            <form name="edit_form" class="modal-content animate" action="../Controllers/Products_Controller.php?action=edit" method="post" onsubmit="return checkPriceEditForm()">      
                                 
                 <div class="container">
                     <h2>SỬA SẢN PHẨM</h2>

@@ -1,5 +1,8 @@
 
-<?php session_start();
+<?php 
+      session_start();
+    //   include_once("./Controllers/Base_Controller.php");
+      //Kiem tra da ton tai nguoi dung chua
       if(isset($_COOKIE["username"])){
           $_SESSION["username"] = $_COOKIE["username"];
           header("Location:./Views/admin-page.php");

@@ -1,0 +1,25 @@
+forrk
+clone Repo
+remote add Repo Sun
+git checkout -b sang nhánh mới
+code
+git add .
+git commit -m
+git push lên my REPO
+
+*EDIT
+sửa code
+git add
+git commit --amend
+git push origin branch -f (tạo review lại pull request)
+
+*Fix Conflict
+-git checkout master
+-git pull (remote dự án) +master
+git checkout + (branch conflict)
+-git rebase master
+sửa code ,sửa conflict
+git add
+git rebase --continue
+git push origin BRANCH -f
+ 

@@ -1,0 +1,7 @@
+-file .md -ghi lại setup hệ thống git
+-rm ; xóa ở thư mục .git
+git rm --cached : xóa cached trên githuv ,lưu ý với .ignore có xóa ko.
+-git reset soft/hard
+cherry pick
+git push --delete
+git pull/fetch :remote repo
